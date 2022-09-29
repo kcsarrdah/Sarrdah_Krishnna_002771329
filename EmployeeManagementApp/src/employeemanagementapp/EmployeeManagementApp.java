@@ -15,7 +15,6 @@ public class EmployeeManagementApp {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("Testing if this works");
     }
     
 }

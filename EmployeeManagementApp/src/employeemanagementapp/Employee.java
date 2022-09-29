@@ -8,7 +8,6 @@ package employeemanagementapp;
  *
  * @author kcsar
  */
-class JoptionPane {
-
+public class Employee {
     
 }
