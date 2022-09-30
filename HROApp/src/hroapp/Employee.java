@@ -2,12 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package employeemanagementapp;
+package hroapp;
 
-/**
- *
- * @author kcsar
- */
 import java.util.Date;
 
 public class Employee {
@@ -110,4 +106,8 @@ public class Employee {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+    
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

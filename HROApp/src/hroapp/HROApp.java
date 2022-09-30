@@ -2,22 +2,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package employeemanagementapp;
+package hroapp;
+
+import java.util.ArrayList;
 
 /**
  *
  * @author kcsar
  */
-public class EmployeeManagementApp {
+public class HROApp {
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic 
-         mainPage mainpage = new mainPage();
-            mainpage.show();
-
-    }
+    static ArrayList<Employee> employeesList = new ArrayList<Employee>(); 
     
+    public static void main(String[] args) {
+        // TODO code application logic here
+        landingPage lp = new landingPage();
+        lp.show();
+    }
 }
