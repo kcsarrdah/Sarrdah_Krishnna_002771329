@@ -4,6 +4,8 @@
  */
 package hroapp;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author kcsar
@@ -338,9 +340,14 @@ public class viewProfile extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        this.hide();
+        // TODO add your handling code here
         mainPage mp = new mainPage();
+        DefaultTableModel model = (DefaultTableModel) mp.tblDisplay.getModel();
+        for(int i=0;i<HROApp.employeesList.size();i++){
+                String data[] = {HROApp.employeesList.get(i).getName(), Integer.toString(HROApp.employeesList.get(i).getEmployeeId()), HROApp.employeesList.get(i).getPositionTitle()};
+                model.addRow(data);
+        }
+        this.hide();
         mp.show();
     }//GEN-LAST:event_jButton1ActionPerformed
 

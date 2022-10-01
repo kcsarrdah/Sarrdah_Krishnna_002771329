@@ -57,9 +57,11 @@
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="btnCreateNew" linkSize="1" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="tfSearchBar" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Component id="jLabel1" min="-2" pref="69" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel1" min="-2" pref="69" max="-2" attributes="0"/>
+                                      <Component id="tfSearchBar" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
+                                  </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -160,6 +162,9 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfSearchBarActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>

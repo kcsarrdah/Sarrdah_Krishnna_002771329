@@ -78,6 +78,11 @@ public class mainPage extends javax.swing.JFrame {
         jLabel1.setText("Search");
 
         tfSearchBar.setBackground(new java.awt.Color(255, 255, 255));
+        tfSearchBar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfSearchBarActionPerformed(evt);
+            }
+        });
 
         tblDisplay.setBackground(new java.awt.Color(255, 255, 255));
         tblDisplay.setModel(new javax.swing.table.DefaultTableModel(
@@ -125,9 +130,10 @@ public class mainPage extends javax.swing.JFrame {
                                 .addComponent(btnEdit)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnCreateNew))
-                            .addComponent(tfSearchBar)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -202,6 +208,28 @@ public class mainPage extends javax.swing.JFrame {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
+        DefaultTableModel tableModel = (DefaultTableModel) tblDisplay.getModel();
+        int id = Integer.parseInt(tableModel.getValueAt(tblDisplay.getSelectedRow(), 1).toString());
+        if(tblDisplay.getSelectedRowCount() == 1){
+            newEmployeeForm nef = new newEmployeeForm();
+            nef.show();
+            for(int i = 0; i < HROApp.employeesList.size(); i++){
+                if(HROApp.employeesList.get(i).getEmployeeId() == id){
+                    nef.tfName.setText(HROApp.employeesList.get(i).getName());
+                    nef.tfEmpID.setText(Integer.toString(HROApp.employeesList.get(i).getEmployeeId()));
+                    nef.tfAge.setText(Integer.toString(HROApp.employeesList.get(i).getAge()));
+                    nef.tfGender.setText(HROApp.employeesList.get(i).getGender());
+                    nef.tfLevel.setText(Integer.toString(HROApp.employeesList.get(i).getLevel()));
+                    nef.tfPosition.setText(HROApp.employeesList.get(i).getPositionTitle());
+                    nef.tfPhone.setText(HROApp.employeesList.get(i).getPhoneNumber());
+                    nef.tfEmail.setText(HROApp.employeesList.get(i).getEmail());
+                    nef.taTeamInfo.setText(HROApp.employeesList.get(i).getTeamInfo());
+                    Format formatter = new SimpleDateFormat("MM/dd/yyyy");
+                    String s = formatter.format(HROApp.employeesList.get(i).getStartDate());
+                    //nef.jDateChooser.setDate(s);
+                }
+            }
+        }
         
     }//GEN-LAST:event_btnEditActionPerformed
 
@@ -232,6 +260,10 @@ public class mainPage extends javax.swing.JFrame {
         }
     }
     }//GEN-LAST:event_btnViewActionPerformed
+
+    private void tfSearchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSearchBarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfSearchBarActionPerformed
 
     /**
      * @param args the command line arguments
