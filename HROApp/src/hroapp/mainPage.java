@@ -4,6 +4,8 @@
  */
 package hroapp;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -37,8 +39,8 @@ public class mainPage extends javax.swing.JFrame {
         tfSearchBar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDisplay = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+        btnView = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,6 +58,11 @@ public class mainPage extends javax.swing.JFrame {
         btnEdit.setBackground(new java.awt.Color(255, 255, 255));
         btnEdit.setForeground(new java.awt.Color(0, 0, 0));
         btnEdit.setText("Edit");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
 
         btnDelete.setBackground(new java.awt.Color(255, 0, 0));
         btnDelete.setForeground(new java.awt.Color(255, 255, 255));
@@ -83,18 +90,23 @@ public class mainPage extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblDisplay);
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("Back to Home Screen");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setBackground(new java.awt.Color(255, 255, 255));
+        btnBack.setForeground(new java.awt.Color(0, 0, 0));
+        btnBack.setText("Back to Home Screen");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jButton2.setText("View");
+        btnView.setBackground(new java.awt.Color(255, 255, 255));
+        btnView.setForeground(new java.awt.Color(0, 0, 0));
+        btnView.setText("View");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -119,9 +131,9 @@ public class mainPage extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnBack)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(btnView)
                         .addGap(16, 16, 16))))
         );
 
@@ -143,8 +155,8 @@ public class mainPage extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnBack)
+                    .addComponent(btnView))
                 .addContainerGap())
         );
 
@@ -169,12 +181,12 @@ public class mainPage extends javax.swing.JFrame {
     nf.show();
     }//GEN-LAST:event_btnCreateNewActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         this.hide();
         landingPage lp = new landingPage();
         lp.show();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
@@ -187,6 +199,39 @@ public class mainPage extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+    // TODO add your handling code here:
+    viewProfile vp = new viewProfile();
+    this.hide();
+    vp.show();
+    DefaultTableModel tablemodel = (DefaultTableModel) tblDisplay.getModel();
+    
+    if(tblDisplay.getSelectedRowCount() == 1){
+        int id = Integer.parseInt(tablemodel.getValueAt(tblDisplay.getSelectedRow(), 1).toString());
+        for (int i = 0; i < HROApp.employeesList.size(); i++){
+            if(HROApp.employeesList.get(i).getEmployeeId() == id){
+                vp.jlName.setText(HROApp.employeesList.get(i).getName());
+                vp.jlID.setText(Integer.toString(HROApp.employeesList.get(i).getEmployeeId()));
+                vp.jlAge.setText(Integer.toString(HROApp.employeesList.get(i).getAge()));
+                vp.jlGender.setText(HROApp.employeesList.get(i).getGender());
+                vp.jlLvl.setText(Integer.toString(HROApp.employeesList.get(i).getLevel()));
+                vp.jlPosition.setText(HROApp.employeesList.get(i).getPositionTitle());
+                vp.jlPhone.setText(HROApp.employeesList.get(i).getPhoneNumber());
+                vp.jlEmail.setText(HROApp.employeesList.get(i).getEmail());
+                vp.jlTI.setText(HROApp.employeesList.get(i).getTeamInfo());
+                Format formatter = new SimpleDateFormat("MM/dd/yyyy");
+                String s = formatter.format(HROApp.employeesList.get(i).getStartDate());
+                vp.jlDate.setText(s);
+            }
+        }
+    }
+    }//GEN-LAST:event_btnViewActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,11 +269,11 @@ public class mainPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreateNew;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnView;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
