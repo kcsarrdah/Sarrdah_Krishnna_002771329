@@ -18,7 +18,13 @@ public class HROApp {
     static ArrayList<Employee> employeesList = new ArrayList<Employee>();
     
     
-    public static void update(){}
+public static void update(int empId, Employee employee) {
+        for(int i=0; i<employeesList.size(); i++) {
+            if(employeesList.get(i).getEmployeeId() == empId) {
+                employeesList.set(i, employee);
+            }
+        }
+}
     
     public static void remove(int empId) {
         for(int i=0; i<employeesList.size(); i++) {

@@ -4,6 +4,7 @@
  */
 package hroapp;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -343,8 +344,25 @@ public class newEmployeeForm extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here: 
+    mainPage mp = new mainPage();
+    DefaultTableModel tableModel = (DefaultTableModel) mp.tblDisplay.getModel();
     Employee employee = new Employee(tfName.getText(), Integer.parseInt(tfEmpID.getText()), Integer.parseInt(tfAge.getText()), tfGender.getText(), jDateChooser.getDate(), Integer.parseInt(tfLevel.getText()), taTeamInfo.getText(), tfPosition.getText(), tfPhone.getText(), tfEmail.getText());
-    HROApp.employeesList.add(employee);
+    int id = Integer.parseInt(tfEmpID.getText());
+    int j = 0, flag = 0;
+    while(j < HROApp.employeesList.size()){
+        if(id == HROApp.employeesList.get(j).getEmployeeId()){
+            HROApp.update(HROApp.employeesList.get(j).getEmployeeId(), employee);
+            JOptionPane.showMessageDialog(this, "Employee Details Updated");
+            flag = 1;
+        }
+        j++;
+    }
+    
+    if(j == HROApp.employeesList.size() && flag == 0){
+        HROApp.employeesList.add(employee);
+        JOptionPane.showMessageDialog(this, "Employee Details Added");
+    }
+    
     model = (DefaultTableModel) mainpage.tblDisplay.getModel();
     for(int i=0;i<HROApp.employeesList.size();i++){
             String data[] = {HROApp.employeesList.get(i).getName(), Integer.toString(HROApp.employeesList.get(i).getEmployeeId()), HROApp.employeesList.get(i).getPositionTitle()};
