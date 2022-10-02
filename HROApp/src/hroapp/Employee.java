@@ -17,6 +17,7 @@ public class Employee {
     private String positionTitle;
     private String phoneNumber;
     private String email;
+    private String imagePath;
     
     Employee(String name, int employeeId, int age, String gender, Date startDate, int level, String teamInfo, String positionTitle, String phoneNumber, String email) {
         this.name = name;
@@ -29,6 +30,7 @@ public class Employee {
         this.positionTitle = positionTitle;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.imagePath = imagePath;
     }
     
     public String getName() {
@@ -71,6 +73,10 @@ public class Employee {
         return email;
     }
     
+    public String getImagePath(){
+        return imagePath;
+    }
+    
     public void setName(String name) {
         this.name = name;
     }
@@ -110,4 +116,8 @@ public class Employee {
     public void setEmail(String email) {
         this.email = email;
     }
+    
+    public void setImagePath (String Image){
+        this.imagePath = imagePath;
+    }
 }

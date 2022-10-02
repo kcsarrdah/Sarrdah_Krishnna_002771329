@@ -4,8 +4,14 @@
  */
 package hroapp;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -256,6 +262,13 @@ public class mainPage extends javax.swing.JFrame {
                 Format formatter = new SimpleDateFormat("MM/dd/yyyy");
                 String s = formatter.format(HROApp.employeesList.get(i).getStartDate());
                 vp.jlDate.setText(s);
+                try {
+                        BufferedImage picture = ImageIO.read(new File(HROApp.employeesList.get(i).getImagePath()));
+                        viewProfile.jLable22.setIcon(new ImageIcon(picture.getScaledInstance(viewProfile.jLable22.getWidth(), viewProfile.jLable22.getHeight(), Image.SCALE_SMOOTH)));
+                    }
+                    catch(Exception e){
+                        JOptionPane.showMessageDialog(this, "Issue with the image");
+                    }
             }
         }
     }
