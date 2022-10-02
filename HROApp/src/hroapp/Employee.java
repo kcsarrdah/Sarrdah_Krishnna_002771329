@@ -19,7 +19,7 @@ public class Employee {
     private String email;
     private String imagePath;
     
-    Employee(String name, int employeeId, int age, String gender, Date startDate, int level, String teamInfo, String positionTitle, String phoneNumber, String email) {
+    Employee(String name, int employeeId, int age, String gender, Date startDate, int level, String teamInfo, String positionTitle, String phoneNumber, String email, String imagePath) {
         this.name = name;
         this.employeeId = employeeId;
         this.age = age;

@@ -340,7 +340,8 @@ public class newEmployeeForm extends javax.swing.JFrame {
         // TODO add your handling code here: 
     mainPage mp = new mainPage();
     DefaultTableModel tableModel = (DefaultTableModel) mp.tblDisplay.getModel();
-    Employee employee = new Employee(tfName.getText(), Integer.parseInt(tfEmpID.getText()), Integer.parseInt(tfAge.getText()), tfGender.getText(), jDateChooser.getDate(), Integer.parseInt(tfLevel.getText()), taTeamInfo.getText(), tfPosition.getText(), tfPhone.getText(), tfEmail.getText());
+    System.out.println(taTeamInfo.getText());
+    Employee employee = new Employee(tfName.getText(), Integer.parseInt(tfEmpID.getText()), Integer.parseInt(tfAge.getText()), tfGender.getText(), jDateChooser.getDate(), Integer.parseInt(tfLevel.getText()), taTeamInfo.getText(), tfPosition.getText(), tfPhone.getText(), tfEmail.getText(), imagePath);
     int id = Integer.parseInt(tfEmpID.getText());
     int j = 0, flag = 0;
     while(j < HROApp.employeesList.size()){

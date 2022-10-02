@@ -12,7 +12,9 @@ import java.text.SimpleDateFormat;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -87,6 +89,11 @@ public class mainPage extends javax.swing.JFrame {
         tfSearchBar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfSearchBarActionPerformed(evt);
+            }
+        });
+        tfSearchBar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfSearchBarKeyReleased(evt);
             }
         });
 
@@ -277,6 +284,14 @@ public class mainPage extends javax.swing.JFrame {
     private void tfSearchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSearchBarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfSearchBarActionPerformed
+
+    private void tfSearchBarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfSearchBarKeyReleased
+        // TODO add your handling code here:
+        DefaultTableModel tablemodel = (DefaultTableModel) tblDisplay.getModel();
+        TableRowSorter <DefaultTableModel> tb = new TableRowSorter <DefaultTableModel>(tablemodel);
+        tblDisplay.setRowSorter(tb);
+        tb.setRowFilter(RowFilter.regexFilter(tfSearchBar.getText()));
+    }//GEN-LAST:event_tfSearchBarKeyReleased
 
     /**
      * @param args the command line arguments

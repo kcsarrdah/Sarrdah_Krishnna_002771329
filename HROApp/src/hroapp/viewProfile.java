@@ -354,8 +354,8 @@ public class viewProfile extends javax.swing.JFrame {
         this.hide();
         mainPage mp = new mainPage();
         DefaultTableModel model = (DefaultTableModel) mp.tblDisplay.getModel();
-        for(int i=0;i<HROApp.employeesList.size();i++){
-            String data[] = {HROApp.employeesList.get(i).getName(), Integer.toString(HROApp.employeesList.get(i).getEmployeeId()), HROApp.employeesList.get(i).getPositionTitle()};
+        for(int i=0; i < HROApp.employeesList.size(); i++){
+            String data[] = {HROApp.employeesList.get(i).getName(), Integer.toString(HROApp.employeesList.get(i).getEmployeeId()), HROApp.employeesList.get(i).getPositionTitle(),HROApp.employeesList.get(i).getTeamInfo(), HROApp.employeesList.get(i).getImagePath()};
             model.addRow(data);
         }
         mp.show();
