@@ -5,6 +5,7 @@
 package hroapp;
 
 import java.io.File;
+import java.util.regex.Pattern;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -338,6 +339,18 @@ public class newEmployeeForm extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here: 
+    String str=  "^\\s?((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?\\s?";
+    String emailStr="\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b";
+    try 
+    {
+    
+        if (!Pattern.compile(str).matcher(tfPhone.getText()).matches()) {
+                throw TypeNotPresentException("Incorrect Details");
+            }
+            if (!Pattern.compile(emailStr).matcher(tfEmail.getText()).matches()) {
+                throw TypeNotPresentException("Incorrect Details");
+            }
+        
     mainPage mp = new mainPage();
     DefaultTableModel tableModel = (DefaultTableModel) mp.tblDisplay.getModel();
     System.out.println(taTeamInfo.getText());
@@ -364,6 +377,10 @@ public class newEmployeeForm extends javax.swing.JFrame {
             model.addRow(data);
     this.hide();
     mainpage.show();
+    }
+    }
+    catch(Exception e){
+        JOptionPane.showMessageDialog(this, "Insert appropriate details.");
     }
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -451,4 +468,8 @@ public class newEmployeeForm extends javax.swing.JFrame {
     public javax.swing.JTextField tfPhone;
     public javax.swing.JTextField tfPosition;
     // End of variables declaration//GEN-END:variables
+
+    private Exception TypeNotPresentException(String incorrect_Details) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
